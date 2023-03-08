@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+
+.box{
+    display: inline-block;
+    margin: 40px 10px;      /* 마진으로 띄운 거리는 클릭이 안되지만 */
+    padding: 10px 10px;     /* 패딩으로 띄운 거리는 클릭이 가능함 */
+    /* 또한 마진은 box-sizing이 먹지 않기에, 패딩을 많이 사용함 */
+
+    text-align: center;
+    line-height: 50px;
+
+    cursor: pointer;
+}

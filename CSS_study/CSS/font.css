@@ -1,0 +1,46 @@
+/* @font-face {
+            font-family: 'a';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+            font-style: normal;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
+
+* {
+    font-family: 'Dongle', sans-serif;
+    font-size: 50px;
+    color: #12121288;           /* 마지막 두글자는 투명도 */
+    color: rgba(red, green, blue, 0.8);     
+}
+
+.description{
+    font-family: 'Dongle', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: red;
+}
+
+h1, h2{
+    margin: 0;
+}
+
+.main-title{
+    text-align: center;
+    line-height: 10px;      /* 줄간격 */
+}
+
+.sub-title{
+    text-align: center;
+    line-height: 10px;
+}
+
+a{
+    border: 1px solid black;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px red;
+}
+
+ul{
+    list-style-type: decimal;
+}

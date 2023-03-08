@@ -1,0 +1,19 @@
+.text1{
+    display: inline-block;
+    margin: 10px 5px 3px 1px;   /* 시계방향으로 적용, top, right, bottom, left 순서 */
+    border: 1px solid #121212;
+    border-width: 10px 5px 3px 1px;     /* bodder로 방향 너비 주는 방법 */
+    padding: 5px 4px 3px 2px;   /* padding도 시계방향 */
+    width: 100px;
+    height: 100px;
+}
+
+.box1{
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 10px;
+    border: 1px solid #121212;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+}

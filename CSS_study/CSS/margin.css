@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    margin: 0px auto;
+    /* margin-left: 200px; */
+    width: 1200px;
+    height: 1000px;
+    background-color: #dbdbdd;
+}
+
+.box{
+    display: inline-block;
+    margin: 0px 20px;       /* 좌우 마진은 서로 밀어내지만 */
+    width: 300px;
+    height: 150px;
+}
+
+.box2{
+    margin: 20px 0px;       /* 위아래 마진은 마진이 중첩됨(같은 div내에서만) */
+    width: 300px;
+    height: 150px;
+}
+
+.b1{
+    margin-bottom: 50px;    /* 위아래 마진이 다를 경우, 큰 마진값이 사용됨 */
+    background-color: red;
+}
+
+.b2{
+    background-color: blue;
+}
+
+.b3{
+    background-color: black;
+}
