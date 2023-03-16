@@ -18,13 +18,13 @@
     overflow: hidden;               /* container 구역 바깥은 hidden으로 숨김 */
 }
 
-input{
+input, textarea{
     border: none;
     outline: none;
     padding: 5px;
 }
 
-input:focus{
+input:focus, textarea:focus{
     background-color: #fafafa;
 }
 
