@@ -1,13 +1,13 @@
-class InformationEvent{
+class InformationEvent {
     static #instance = null;
-    static getInstance(){
-        if(this.#instance == null){
+    static getInstance() {
+        if(this.#instance == null) {
             this.#instance = new InformationEvent();
         }
         return this.#instance;
     }
 
-    addEventPhotoChangeClick(){
+    addEventPhotoChangeClick() {
         const infoPhoto = document.querySelector(".info-photo");
         infoPhoto.onclick = () => {
             const photoFile = document.querySelector(".photo-file");
@@ -15,36 +15,20 @@ class InformationEvent{
         }
     }
 
-    addEventPhotoChange(){
+    addEventPhotoChange() {
         const photoFile = document.querySelector(".photo-file");
         photoFile.onchange = () => {
             fileService.getInstance().changePhoto();
         }
     }
 
-    // addEventaboutMeButton(){
-    //     const aboutMeButton = document.querySelectorAll(".m-aboutme");
-    //     aboutMeButton.forEach(aboutMeButton => {
-    //         aboutMeButton.onclick = () => {
-    //             const nameInput = document.getElementById("name");
-    //             const emailInput = document.getElementById("email");
-    //             const phoneInput = document.getElementById("phone");
-    //             const githubInput = document.getElementById("github");
-    //             nameInput.disabled = false;
-    //             emailInput.disabled = false;
-    //             phoneInput.disabled = false;
-    //             githubInput.disabled = false;
-    //         }
-    //     })
-    // }
-
-    addEventAboutMeModifyClick(){
+    addEventAboutMeModifyClick() {
         const aboutMeModifyButton = document.querySelector(".m-aboutme");
         aboutMeModifyButton.onclick = () => {
             const aboutMeSaveButton = document.querySelector(".s-aboutme");
             aboutMeSaveButton.classList.remove("button-hidden");
             aboutMeModifyButton.classList.add("button-hidden");
-            
+
             const infoInputContainers = document.querySelectorAll(".info-input-container");
             infoInputContainers.forEach(infoInputContainer => {
                 infoInputContainer.querySelector(".info-input").disabled = false;
@@ -52,7 +36,7 @@ class InformationEvent{
         }
     }
 
-    addEventAboutMeSaveClick(){
+    addEventAboutMeSaveClick() {
         const aboutMeSaveButton = document.querySelector(".s-aboutme");
         aboutMeSaveButton.onclick = () => {
             const aboutMeModifyButton = document.querySelector(".m-aboutme");
@@ -61,62 +45,59 @@ class InformationEvent{
 
             const infoInputContainers = document.querySelectorAll(".info-input-container");
             infoInputContainers.forEach(infoInputContainer => {
+                console.log(infoInputContainer.querySelector(".info-input").value);
                 infoInputContainer.querySelector(".info-input").disabled = true;
             });
         }
     }
 
-    addEventIntroduceModifyClick(){
+    addEventIntroduceModifyClick() {
         const introduceModifyButton = document.querySelector(".m-introduce");
         introduceModifyButton.onclick = () => {
             const introduceSaveButton = document.querySelector(".s-introduce");
             introduceSaveButton.classList.remove("button-hidden");
             introduceModifyButton.classList.add("button-hidden");
-            
             const introduceInput = document.querySelector(".introduce-input");
             introduceInput.disabled = false;
         }
     }
 
-    addEventIntroduceSaveClick(){
+    addEventIntroduceSaveClick() {
         const introduceSaveButton = document.querySelector(".s-introduce");
         introduceSaveButton.onclick = () => {
             const introduceModifyButton = document.querySelector(".m-introduce");
             introduceModifyButton.classList.remove("button-hidden");
             introduceSaveButton.classList.add("button-hidden");
-
             const introduceInput = document.querySelector(".introduce-input");
             introduceInput.disabled = true;
         }
     }
 }
 
-class fileService{
+class fileService {
     static #instance = null;
-    static getInstance(){
-        if(this.#instance == null){
+    static getInstance() {
+        if(this.#instance == null) {
             this.#instance = new fileService();
         }
         return this.#instance;
     }
 
-    changePhoto(){
+    changePhoto() {
         const photoForm = document.querySelector(".photo-form");
         const formData = new FormData(photoForm);
         const fileValue = formData.get("file");
         this.showPreview(fileValue);
     }
 
-    showPreview(fileValue){
+    showPreview(fileValue) {
         const fileReader = new FileReader();
-        
+
         fileReader.readAsDataURL(fileValue);
 
         fileReader.onload = (e) => {
             const photoImg = document.querySelector(".info-photo img");
             photoImg.src = e.target.result;
-
         }
-
     }
 }

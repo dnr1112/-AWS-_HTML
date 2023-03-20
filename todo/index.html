@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/modal.css">
     <link rel="stylesheet" href="./css/aside.css">
     <link rel="stylesheet" href="./css/index.css">
     <title>TODO-LIST</title>
@@ -15,6 +16,7 @@
     <div class="container">
         <aside class="menu-aside hidden-menu">
             <button class="menu-button">▶</button>
+
             <header class="aside-header">
                 <h1 class="header-title"><i class="fa-regular fa-calendar-check"></i>TODOLIST</h1>
             </header>
@@ -74,7 +76,7 @@
                 </div>
                 <div class="info-introduce">
                     <h1 class="info-title">
-                        Self Introdution
+                        Self Introduction
                         <button class="modify-button m-introduce">
                             <i class="fa-regular fa-pen-to-square"></i>
                         </button>
@@ -90,35 +92,33 @@
             <header class="main-header">
                 <h1 class="main-title">ToDo</h1>
                 <div class="todo-input-container">
-                    <i><i class="fa-regular fa-file-lines"></i></i>
+                    <i class="fa-regular fa-file-lines"></i>
                     <input type="text" class="todo-input" placeholder="Please enter todo...">
                     <button class="add-todo-button"><i class="fa-solid fa-plus"></i></button>
                 </div>
             </header>
             <ul class="todo-content-list">
-                <li class="content-container">
-                    <div class="content-header">
-                        <div class="todo-date">2023.03.15</div>
-                        <div class="todo-date-time">17:42:50</div>
-                    </div>
-                    <div class="content-main">
-                        ToDoList insert api, service 작성하기
-                    </div>
-                    <div class="content-footer">
-                        <button class="modify-button">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                        </button>
-                        <button class="remove-button">
-                            <i class="fa-regular fa-trash-can"></i>
-                        </button>
-                    </div>
-                </li>
             </ul>
         </main>
     </div>
-    <script src="../todo/js/app.js"></script>
-    <script src="../todo/js/aside.js"></script>
-    <script src="../todo/js/information.js"></script>
-    <script src="../todo/js/todo.js"></script>
+    <div class="modal-container modal-hidden">
+        <div class="modal-section">
+            <div class="modal-header">
+                <h1 class="modal-title">ToDo 삭제</h1>
+            </div>
+            <div class="modal-main">
+                <p class="modal-message">ToDo를 삭제하시겠습니까?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-ok-button">확인</button>
+                <button type="button" class="modal-cancel-button">취소</button>
+            </div>
+        </div>
+    </div>
+    <script src="./js/aside.js"></script>
+    <script src="./js/information.js"></script>
+    <script src="./js/todo.js"></script>
+    <script src="./js/modal.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>

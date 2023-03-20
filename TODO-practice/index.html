@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../TODO-practice/css/index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <main class="main-container">
+            
+            <h1 class="main-title"><i class="fa-regular fa-pen-to-square"></i>TO-DO LIST</h1>
+            <div class="todo-button-container">
+                <button class="todo-button">전체 할일:</button>
+                <button class="todo-button">진행중:</button>
+                <button class="todo-button">완료:</button>
+            </div>
+            <div class="todo-input-container">
+                <input type="text" class="todo-input" placeholder="새로 작성하기">
+                <button class="add-todo-button"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="warning">* 내용을 입력해주세요</div>
+            <ul class="todo-list-container">
+                <li class="all-container"><div><input type="checkbox" class="all-select">전체선택</div><button class="all-delete">전체삭제</button></li>
+                <li class="todo-list"><div><input type="checkbox" class="todo-checkbox">SOMETHING1</div><button class="delete-button">×</button></li>
+                <li class="todo-list"><div><input type="checkbox" class="todo-checkbox">SOMETHING2</div><button class="delete-button">×</button></li>
+                <li class="todo-list"><div><input type="checkbox" class="todo-checkbox">SOMETHING3</div><button class="delete-button">×</button></li>
+
+            </ul>
+        </main>
+    </div>
+</body>
+</html>

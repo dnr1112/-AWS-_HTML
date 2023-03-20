@@ -1,13 +1,13 @@
-class TodoEvent{
+class TodoEvent {
     static #instance = null;
-    static getInstance(){
-        if(this.#instance == null){
+    static getInstance() {
+        if(this.#instance == null) {
             this.#instance = new TodoEvent();
         }
         return this.#instance;
     }
 
-    addEventAddTodoClick(){
+    addEventAddTodoClick() {
         const addTodoButton = document.querySelector(".add-todo-button");
         addTodoButton.onclick = () => {
             TodoService.getInstance().addTodo();
@@ -16,21 +16,32 @@ class TodoEvent{
         }
     }
 
-    addEventAddTodoKeyUp(){
+    addEventAddTodoKeyUp() {
         const todoInput = document.querySelector(".todo-input");
         todoInput.onkeyup = () => {
-            if(window.event.keyCode == 13){
+            if(window.event.keyCode == 13) {
                 const addTodoButton = document.querySelector(".add-todo-button");
                 addTodoButton.click();
             }
         }
     }
+
+    addEventRemoveTodoClick() {
+        const removeButtons = document.querySelectorAll(".content-footer .remove-button");
+        removeButtons.forEach((removeButton, index) => {
+            removeButton.onclick = () => {
+                ModalService.getInstance().showRemoveModal(index);
+            }
+        });
+        
+        
+    }
 }
 
-class TodoService{
+class TodoService {
     static #instance = null;
-    static getInstance(){
-        if(this.#instance == null){
+    static getInstance() {
+        if(this.#instance == null) {
             this.#instance = new TodoService();
         }
         return this.#instance;
@@ -38,16 +49,21 @@ class TodoService{
 
     todoList = null;
 
-    constructor(){
-        if(localStorage.getItem("todoList") == null){
+    constructor() {
+        if(localStorage.getItem("todoList") == null) {
             this.todoList = new Array();
-        }else{
+        }else {
             this.todoList = JSON.parse(localStorage.getItem("todoList"));
         }
         this.loadTodoList();
     }
 
-    addTodo(){
+    updateLocalStorage() {
+        localStorage.setItem("todoList", JSON.stringify(this.todoList));
+        this.loadTodoList();
+    }
+
+    addTodo() {
         const todoInput = document.querySelector(".todo-input");
         const nowDate = new Date();
         // console.log(`년: ${nowDate.getFullYear()}`);
@@ -59,7 +75,7 @@ class TodoService{
         // console.log(`초: ${nowDate.getSeconds()}`);
 
         const convertDay = (day) => {
-            return day == 0 ? "일"
+            return day == 0 ? "일" 
                 : day == 1 ? "월"
                 : day == 2 ? "화"
                 : day == 3 ? "수"
@@ -74,33 +90,35 @@ class TodoService{
         }
 
         this.todoList.push(todoObj);
-        localStorage.setItem("todoList", JSON.stringify(this.todoList));
-        this.loadTodoList();
+        this.updateLocalStorage();
     }
 
-    loadTodoList(){
+    loadTodoList() {
         const todoContentList = document.querySelector(".todo-content-list");
         todoContentList.innerHTML = ``;
+
         this.todoList.forEach(todoObj => {
             todoContentList.innerHTML += `
-            <li class="content-container">
-                <div class="content-header">
-                    <div class="todo-date">${todoObj.todoDate}</div>
-                    <div class="todo-date-time">${todoObj.todoDateTime}</div>
-                </div>
-                <div class="content-main">
-                    ${todoObj.todoContent}
-                </div>
-                <div class="content-footer">
-                    <button class="modify-button">
-                        <i class="fa-regular fa-pen-to-square"></i>
-                    </button>
-                    <button class="remove-button">
-                        <i class="fa-regular fa-trash-can"></i>
-                    </button>
-                </div>
-            </li>
+                <li class="content-container">
+                    <div class="content-header">
+                        <div class="todo-date">${todoObj.todoDate}</div>
+                        <div class="todo-date-time">${todoObj.todoDateTime}</div>
+                    </div>
+                    <div class="content-main">
+                        ${todoObj.todoContent}
+                    </div>
+                    <div class="content-footer">
+                        <button class="modify-button">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </button>
+                        <button class="remove-button">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                </li>
             `;
         });
+
+        TodoEvent.getInstance().addEventRemoveTodoClick();
     }
 }
