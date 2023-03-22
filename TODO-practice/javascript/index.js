@@ -1,32 +1,21 @@
 // 전체할일, 진행중, 완료 todo 보기
 DisplayTodoCounts();
 
-function DisplayTodoCounts(){
-    const displayAllTodoCounts = document.querySelector(".display-all-todo");
-    const displayRunningTodoCounts = document.querySelector(".display-running-todo");
-    const displayFinishTodoCounts = document.querySelector(".display-finish-todo");
-
-    displayAllTodoCounts = document.querySelectorAll(".todo-list-container li:not(.all-container)").length;
-    displayRunningTodoCounts = document.querySelectorAll(".todo-list-container li:not(.all-container) .todo-checkbox:not(:checked)").length;
-    displayFinishTodoCounts = displayAllTodoCounts - displayRunningTodoCounts;
-
-
+function DisplayTodoCounts() {
+    const displayAllTodo = document.querySelector(".all-todo-button");
+    const allTodo = document.querySelectorAll(".todo-checkbox");
+    displayAllTodo.textContent = `전체할일: ${allTodo.length}`;
+    console.log("전체할일:" + allTodo.length);
+    const displayRunningTodo = document.querySelector(".running-todo-button");
+    const runningTodo = document.querySelectorAll(".todo-checkbox:not(:checked)");
+    displayRunningTodo.textContent = `진행중: ${runningTodo.length}`;
+    console.log("진행중:" + runningTodo.length);
+    const displayFinishTodo = document.querySelector(".finish-todo-button");
+    const finishTodo = document.querySelectorAll(".todo-checkbox:checked");
+    displayFinishTodo.textContent = `완료: ${finishTodo.length}`;
+    console.log("완료:" + finishTodo.length);
+    
 }
-
-// function displayTodoCounts() {
-//     const allCount = document.querySelectorAll('.todo-list-container li:not(.all-container)').length;
-//     const uncheckedCount = document.querySelectorAll('.todo-list-container li:not(.all-container) input[type="checkbox"]:not(:checked)').length;
-//     const checkedCount = allCount - uncheckedCount;
-  
-//     const allCountText = `전체 할일: ${allCount}`;
-//     const uncheckedCountText = `진행중: ${uncheckedCount}`;
-//     const checkedCountText = `완료: ${checkedCount}`;
-  
-//     allTodoButton.textContent = allCountText;
-//     runningTodoButton.textContent = uncheckedCountText;
-//     finishTodoButton.textContent = checkedCountText;
-//   }
-  
 
 // 모든 list 보기
 ClickAllTodo();
@@ -86,7 +75,7 @@ function addEventAddTodo(){
     const warning = document.querySelector(".warning");
     const todoList = document.querySelector(".todo-list-container");
 
-    addButton.addEventListener("click", function() {
+    addButton.onclick = () => {
         if (todoInput.value === ""){
             warning.style.display = "block";
         } else {
@@ -103,9 +92,22 @@ function addEventAddTodo(){
             addEventDeleteTodo();
             addEventCheckAll();
             addEventDeleteAll();
-            displayTodoCounts();
+            DisplayTodoCounts();
         }
-    });
+    }  
+}
+
+// 엔터키로 작동
+addEventAddTodoKeyUp();
+
+function addEventAddTodoKeyUp(){
+    const todoInput = document.querySelector(".todo-input");
+    todoInput.onkeyup = () => {
+        if(window.event.keyCode == 13) {
+            const addTodoButton = document.querySelector(".add-todo-button");
+            addTodoButton.click();
+        }
+    }
 }
 
 // 체크 이벤트
@@ -114,14 +116,14 @@ addEventCheckTodo();
 function addEventCheckTodo(){
     const checkBoxes = document.querySelectorAll(".todo-checkbox");
     for(let i = 0; i < checkBoxes.length; i++){
-        checkBoxes[i].addEventListener("change", () => {
+        checkBoxes[i].onclick = () => {
             if(checkBoxes[i].checked){
                 checkBoxes[i].parentNode.style.color = 'red';
             }else{
                 checkBoxes[i].parentNode.style.color = 'black';
             }
-        });
-    }
+            DisplayTodoCounts();
+        }};
 }
 
 // 전체 체크
@@ -131,7 +133,7 @@ function addEventCheckAll() {
     const checkAllBox = document.querySelector(".all-select");
     const checkBoxes = document.querySelectorAll(".todo-checkbox");
 
-    checkAllBox.addEventListener("change", function () {
+    checkAllBox.onclick = () => {
         checkBoxes.forEach(function (checkbox) {
             checkbox.checked = checkAllBox.checked;
             if(checkbox.checked){
@@ -139,8 +141,9 @@ function addEventCheckAll() {
             }else{
                 checkbox.parentNode.style.color = 'black';
             }
+            DisplayTodoCounts();
         });
-    });
+    }
 }
 
 
@@ -150,9 +153,10 @@ addEventDeleteTodo();
 function addEventDeleteTodo(){
     const deleteButtons = document.querySelectorAll(".delete-button");
     for(let i = 0; i < deleteButtons.length; i++){
-        deleteButtons[i].addEventListener("click", () => {
+        deleteButtons[i].onclick = () => {
             deleteButtons[i].parentNode.remove();
-        });
+            DisplayTodoCounts();
+        }
     }
 }
 
@@ -164,5 +168,6 @@ function addEventDeleteAll(){
     const listContainer = document.querySelector(".todo-list-container");
     deleteAllButton.onclick = () => {
         listContainer.innerHTML = `<li class="all-container"><div><input type="checkbox" class="all-select">전체선택</div><button class="all-delete">전체삭제</button></li>`;
+        DisplayTodoCounts();
     }
 }
